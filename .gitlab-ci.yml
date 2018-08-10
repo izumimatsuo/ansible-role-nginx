@@ -1,7 +1,11 @@
 ---
 image:
     name: williamyeh/ansible:centos7
+<<<<<<< HEAD
     entrypoint: ["/lib/systemd/systemd","&&"]
+=======
+    entrypoint: ["/sbin/init"]
+>>>>>>> 7e819e41324b9d816065881f90e12a82fdddcbd2
 
 stages:
     - lint:
