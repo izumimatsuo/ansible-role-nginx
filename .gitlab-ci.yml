@@ -10,6 +10,7 @@ before_script:
     - yum -y install gcc gcc-c++ kernel-devel
     - yum -y install python-devel
     - pip install testinfra
+    - cd tests
 
 syntax_check:
     stage: lint
@@ -20,7 +21,6 @@ ansible_build:
     stage: build
     script:
         - docker run --rm --privileged --name localhost -d centos:centos7 /sbin/init
-        - cd tests
         - ansible-playbook test.yml
         - py.test -v test.py --hosts='docker://localhost'
     after_script:
