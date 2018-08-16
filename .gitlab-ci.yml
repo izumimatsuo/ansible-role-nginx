@@ -1,20 +1,15 @@
 ---
-image:
-    name: williamyeh/ansible:centos7
-<<<<<<< HEAD
-    entrypoint: ["/lib/systemd/systemd","&&"]
-=======
-    entrypoint: ["/sbin/init"]
->>>>>>> 7e819e41324b9d816065881f90e12a82fdddcbd2
+image: williamyeh/ansible:centos7
 
 stages:
     - lint:
     - build:
 
 before_script:
-    #    - yum -y install gcc gcc-c++ kernel-devel
-    #    - yum -y install python-devel
-    #    - pip install testinfra
+    - yum -y install docker
+    - yum -y install gcc gcc-c++ kernel-devel
+    - yum -y install python-devel
+    - pip install testinfra
     - cd tests
 
 syntax_check:
@@ -26,4 +21,4 @@ ansible_build:
     stage: build
     script:
         - ansible-playbook test.yml
-          #        - py.test -v test.py
+        - py.test -v test.py
