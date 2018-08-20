@@ -1,4 +1,10 @@
----
+- hosts: localhost
+  connection: local
+  remote_user: docker
+  tasks:
+      - name: start target container
+        docker_container: image=centos:centos7 name=localhost tty=yes privileged=yes recreate=yes command=/sbin/init
+
 - hosts: localhost
   remote_user: root
   connection: docker

@@ -1,27 +1,15 @@
 ---
-image: williamyeh/ansible:centos7
+image: localhost:5000/ansible/test-runner:latest
 
 stages:
-    - lint:
     - build:
-
-before_script:
-    - yum -y install docker
-    - yum -y install gcc gcc-c++ kernel-devel
-    - yum -y install python-devel
-    - pip install testinfra
-    - cd tests
-
-syntax_check:
-    stage: lint
-    script:
-        - ansible-playbook test.yml --syntax-check
 
 ansible_build:
     stage: build
     script:
-        - docker run --rm --privileged --name localhost -d centos:centos7 /sbin/init
+        - cd tests
+        - ansible-playbook test.yml --syntax-check
         - ansible-playbook test.yml
         - py.test -v test.py --hosts='docker://localhost'
     after_script:
-        - docker stop localhost
+        - docker rm -f localhost
