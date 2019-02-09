@@ -25,7 +25,7 @@ nginx_server_name|localhost   |サーバ名
 項目名          |説明
 ----------------|------------------------------
 $remote_addr    |リモートホスト名
-                |"-" 表示
+　              |"-" 表示
 $remote_user    |リモートユーザ
 $time_local     |リクエストを受け付けた日時
 $request        |リクエストの最初の行
