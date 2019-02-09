@@ -1,10 +1,17 @@
 # ansible-role-nginx
 
-Nginx web サーバを構築する ansible role です。
+Nginx Web サーバを構築する ansible role です。
+
+以下のセキュリティ設定を反映。
+
+* バージョン情報の隠蔽
+* ディレクトリリスティングの無効化
+* クリックジャッキング対策
+
 
 ## ビルド
 
-ansible-playbook と testinfra の実行コンテナをビルド＆レジスト
+ansible-playbook と testinfra の実行コンテナをビルド＆テスト実行
 
 ビルド実行
 
