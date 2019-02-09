@@ -10,17 +10,17 @@ server {
   #access_log  /var/log/nginx/log/host.access.log  main;
 
   add_header X-Frame-Options SAMEORIGIN;
-  #add_header X-Content-Type-Options nosniff;
-  #add_header X-XSS-Protection "1; mode=block";
+  add_header X-Content-Type-Options nosniff;
+  add_header X-XSS-Protection "1; mode=block";
   #add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ssl.google-analytics.com; img-src 'self' https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com 'self' https://themes.googleusercontent.com; frame-src 'none' object-src 'none'";
   etag off;
 
   location / {
     root   /usr/share/nginx/html;
     index  index.html index.htm;
-    if ($request_method != GET ) {
-      return 403;
-    }
+#    if ($request_method != GET ) {
+#      return 403;
+#    }
   }
 
   #error_page  404              /404.html;
