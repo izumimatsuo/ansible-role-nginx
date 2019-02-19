@@ -35,14 +35,14 @@ $http_referer   |リファラー
 $http_user_agent|エージェント
 $request_time   |レスポンス時間、ミリ秒まで
 
-## ビルド
+## ビルド＆テスト
 
-以下のいづれかで ansible-playbook と testinfra を実行可能。
+以下のいづれかで実行。
 
-1) docker-compose でビルド実行
+1) docker-compose で実行
 
-``` $ ./build.sh ```
+``` $ docker-compose run runner bash -c 'molecule test' ```
 
-2) gitlab-runner でビルド実行
+2) gitlab-runner で実行
 
 ``` $ gitlab-runner exec docker --docker-volumes /var/run/docker.sock:/var/run/docker.sock ansible_build ```
