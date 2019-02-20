@@ -5,7 +5,7 @@ stages:
     - build:
 
 before_script:
-    - apt update -y && apt install -y docker.io git
+    - apt update -y && apt install -y docker.io
     - pip install molecule docker-py
 
 ansible_build:
