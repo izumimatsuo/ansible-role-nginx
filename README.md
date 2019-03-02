@@ -1,4 +1,4 @@
-# ansible-role-nginx
+# ansible-role-nginx [![Build Status](https://travis-ci.org/izumimatsuo/ansible-role-nginx.svg?branch=master)](https://travis-ci.org/izumimatsuo/ansible-role-nginx)
 
 CentOS 7 に Nginx Web サーバを構築する ansible role です。
 
