@@ -1,0 +1,6 @@
+upstream backend {
+  {% for item in nginx_proxy_backends %}
+  server {{ item }};
+  {% endfor %}
+  server localhost:8080 backup;
+}

@@ -23,6 +23,34 @@
     dest: /etc/nginx/conf.d/default.conf
     mode: 0644
   notify: restart nginx service
+  when: not nginx_is_proxy
+  tags: nginx
+
+- name: copy nginx proxy conf
+  template:
+    src: proxy.conf.j2
+    dest: /etc/nginx/conf.d/default.conf
+    mode: 0644
+  notify: restart nginx service
+  when: nginx_is_proxy
+  tags: nginx
+
+- name: copy nginx proxy backend conf
+  template:
+    src: upstream.conf.j2
+    dest: /etc/nginx/conf.d/upstream.conf
+    mode: 0644
+  notify: restart nginx service
+  when: nginx_is_proxy
+  tags: nginx
+
+- name: copy nginx proxy backend dyna conf
+  template:
+    src: upstream.conf.tmpl.j2
+    dest: /etc/nginx/conf.d/upstream.conf.tmpl
+    mode: 0644
+    #  notify: restart nginx service
+  when: nginx_is_proxy and nginx_proxy_dyna
   tags: nginx
 
 - name: start nginx service

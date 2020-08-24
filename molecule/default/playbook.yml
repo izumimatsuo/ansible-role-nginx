@@ -1,5 +1,7 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    nginx_is_proxy: yes
   roles:
     - role: ansible-role-nginx
