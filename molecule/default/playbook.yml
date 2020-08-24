@@ -3,5 +3,15 @@
   hosts: all
   vars:
     nginx_is_proxy: yes
+    nginx_proxy_dyna: yes
+    test_skip: true
+  pre_tasks:
+    - name: create consul-template conf directory
+      file:
+        path: /etc/consul-template.d
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
   roles:
     - role: ansible-role-nginx

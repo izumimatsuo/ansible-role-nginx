@@ -49,7 +49,16 @@
     src: upstream.conf.tmpl.j2
     dest: /etc/nginx/conf.d/upstream.conf.tmpl
     mode: 0644
-    #  notify: restart nginx service
+  notify: restart consul-template service
+  when: nginx_is_proxy and nginx_proxy_dyna
+  tags: nginx
+
+- name: copy consul-template conf
+  template:
+    src: nginx_proxy_dyna.conf.j2
+    dest: /etc/consul-template.d/nginx_proxy_dyna.conf
+    mode: 0644
+  notify: restart consul-template service
   when: nginx_is_proxy and nginx_proxy_dyna
   tags: nginx
 
