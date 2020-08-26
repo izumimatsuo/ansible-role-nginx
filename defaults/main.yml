@@ -1,6 +1,7 @@
 ---
 nginx_listen_port: 80
 nginx_server_name: localhost
+nginx_ssl_on: no
 nginx_is_proxy: no
 nginx_proxy_backends: ['localhost:8080']
 nginx_proxy_dyna: no

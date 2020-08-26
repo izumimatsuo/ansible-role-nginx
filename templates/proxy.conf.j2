@@ -1,12 +1,22 @@
-# server {
-#   listen       80;
-#   server_name  web.example.com;
-#   rewrite  ^ https://$http_host$request_uri? permanent;
-# }
-
+{% if nginx_ssl_on %}
 server {
   listen       80;
-  server_name  web.example.com;
+  server_name  {{ nginx_server_name }};
+  rewrite  ^ https://$http_host$request_uri? permanent;
+}
+{% endif %}
+
+server {
+{% if nginx_ssl_on %}
+  listen      443 ssl;
+
+  ssl_certificate      /etc/nginx/cert/server.crt;
+  ssl_certificate_key  /etc/nginx/cert/server.key;
+
+{% else %}
+  listen       {{ nginx_listen_port }};
+{% endif %}
+  server_name  {{ nginx_server_name }};
 
   proxy_set_header  Host                $host;
   proxy_set_header  X-Forwarded-For     $proxy_add_x_forwarded_for;
