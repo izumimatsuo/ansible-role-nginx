@@ -44,13 +44,19 @@
   when: nginx_is_proxy
   tags: nginx
 
+- name: detect consul-template conf directory
+  stat:
+    path: /etc/consul-template.d
+  register: consul_template_conf_dir
+  tags: nginx
+
 - name: copy nginx proxy backend dyna conf
   template:
     src: upstream.conf.tmpl.j2
     dest: /etc/nginx/conf.d/upstream.conf.tmpl
     mode: 0644
   notify: restart consul-template service
-  when: nginx_is_proxy and nginx_proxy_dyna
+  when: nginx_is_proxy and consul_template_conf_dir.stat.exists
   tags: nginx
 
 - name: copy consul-template conf
@@ -59,7 +65,7 @@
     dest: /etc/consul-template.d/nginx_proxy_dyna.conf
     mode: 0644
   notify: restart consul-template service
-  when: nginx_is_proxy and nginx_proxy_dyna
+  when: nginx_is_proxy and consul_template_conf_dir.stat.exists
   tags: nginx
 
 - name: start nginx service
