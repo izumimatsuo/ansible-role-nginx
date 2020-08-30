@@ -24,4 +24,5 @@ vrrp_instance VI_1 {
         chk_nginx
     }
     notify_backup "/usr/bin/sudo ip addr del {{ nginx_cluster.virtual_ipaddr }} dev {{ nginx_cluster.check_interface }}"
+    notify_fault "/usr/bin/sudo systemctl start nginx"
 }
