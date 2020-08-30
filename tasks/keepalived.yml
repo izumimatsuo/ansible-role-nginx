@@ -1,0 +1,38 @@
+---
+- name: install keepalived package
+  yum:
+    name:
+      - keepalived
+  tags: nginx
+
+- name: copy keepalived conf
+  template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+    mode: 0644
+  notify: restart keepalived service
+  tags: nginx
+
+- name: create script execute user
+  user:
+    name: 'keepalived_script'
+    createhome: no
+    shell: /sbin/nologin
+  tags: nginx
+
+- name: edit sudoers
+  lineinfile:
+    path: /etc/sudoers.d/keepalived_script
+    create: yes
+    regexp: '^%keepalived_script ALL='
+    line: '%keepalived_script ALL=(ALL) NOPASSWD: ALL'
+    validate: '/usr/sbin/visudo -cf %s'
+  tags: nginx
+
+- name: start keepalived service
+  service:
+    name: keepalived
+    state: started
+    enabled: yes
+  when: test_skip is undefined
+  tags: nginx

@@ -3,6 +3,7 @@
   hosts: all
   vars:
     nginx_is_proxy: yes
+    nginx_cluster: { virtual_ipaddr: 'xxx', check_interface: 'yyy' }
     test_skip: true
   roles:
     - role: ansible-role-nginx

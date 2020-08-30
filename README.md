@@ -22,6 +22,7 @@ CentOS 7 に Nginx Web サーバを導入する ansible role です。
 | nginx_is_proxy    | no           | reverse proxy として構成 |
 | nginx_proxy_backends | localhost:8080 | proxy backend リスト |
 | nginx_proxy_dyna_name | app      | 動的構成する際のサービス名 |
+| nginx_cluster     | None         | クラスタ情報設定 {virtual_ipaddr: xxx, check_interface: yyy} |
 
 ## ログフォーマット
 
