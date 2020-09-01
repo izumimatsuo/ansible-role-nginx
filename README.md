@@ -19,10 +19,12 @@ CentOS 7 に Nginx Web サーバを導入する ansible role です。
 | nginx_listen_port | 80           | ポート番号                |
 | nginx_server_name | localhost    | サーバ名                  |
 | nginx_ssl_on      | no           | SSL通信を適用する（ポート番号は 443固定） |
+| nginx_ssl_redirect | no          | httpへのアクセスをhttpsへリダイレクトする設定追加 |
 | nginx_is_proxy    | no           | reverse proxy として構成 |
 | nginx_proxy_backends | localhost:8080 | proxy backend リスト |
 | nginx_proxy_dyna_name | app      | 動的構成する際のサービス名 |
-| nginx_cluster     | None         | クラスタ情報設定 {virtual_ipaddr: xxx, check_interface: yyy} |
+| nginx_realip_addr | []           | 前段のLB/Proxyのアドレス |
+| use_proxy_protocol | no          | proxy-protocolを使用する |
 
 ## ログフォーマット
 
