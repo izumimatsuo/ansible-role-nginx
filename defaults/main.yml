@@ -2,7 +2,10 @@
 nginx_listen_port: 80
 nginx_server_name: localhost
 nginx_ssl_on: no
+nginx_ssl_redirect: no
 nginx_is_proxy: no
+nginx_realip_addr: []
 nginx_proxy_backends: ['localhost:8080']
 nginx_proxy_dyna_name: 'app'
+use_proxy_protocol: no
 nginx_cluster: # {virtual_ipaddr: xxx, check_interface: yyy}
