@@ -74,7 +74,3 @@
     state: started
     enabled: yes
   tags: nginx
-
-- include_tasks: keepalived.yml
-  when: nginx_cluster != None
-  tags: nginx
