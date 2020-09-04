@@ -44,6 +44,21 @@
   when: nginx_is_proxy
   tags: nginx
 
+- name: detect consul conf directory
+  stat:
+    path: /etc/consul.d
+  register: consul_conf_dir
+  tags: nginx
+
+- name: copy web service conf
+  template:
+    src: web.json.j2
+    dest: /etc/consul.d/web.json
+    mode: 0644
+  notify: restart consul service
+  when: consul_conf_dir.stat.exists
+  tags: nginx
+
 - name: detect consul-template conf directory
   stat:
     path: /etc/consul-template.d

@@ -5,6 +5,13 @@
     state: restarted
   tags: nginx
 
+- name: restart consul service
+  service:
+    name: consul
+    state: restarted
+  when: test_skip is undefined
+  tags: nginx
+
 - name: restart consul-template service
   service:
     name: consul-template
