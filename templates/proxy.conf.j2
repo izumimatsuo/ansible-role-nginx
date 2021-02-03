@@ -1,4 +1,4 @@
-{% if nginx_ssl_redirect %}
+{% if nginx_ssl_on %}
 server {
   listen       80;
   server_name  {{ nginx_server_name }};

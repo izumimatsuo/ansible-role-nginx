@@ -1,8 +1,0 @@
-consul {
-  address = "127.0.0.1:8500"
-}
-template {
-  source = "/etc/nginx/conf.d/upstream.conf.tmpl"
-  destination = "/etc/nginx/conf.d/upstream.conf"
-  command = "systemctl reload nginx"
-}

@@ -1,6 +1,0 @@
-upstream backend {
-{% raw %}{{ range service "{% endraw %}{{ nginx_proxy_dyna_name }}{% raw %}" "passing" }}
-  server {{ .Address }}:{{ .Port }};{{ end }}
-  server localhost:8080 backup;
-}
-{% endraw %}

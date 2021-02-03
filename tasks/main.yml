@@ -2,12 +2,10 @@
 - name: install nginx repository
   yum:
     name: http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
-  tags: nginx
 
 - name: install nginx package
   yum:
     name: nginx
-  tags: nginx
 
 - name: copy nginx conf
   template:
@@ -15,7 +13,6 @@
     dest: /etc/nginx/nginx.conf
     mode: 0644
   notify: restart nginx service
-  tags: nginx
 
 - name: copy nginx default conf
   template:
@@ -23,8 +20,7 @@
     dest: /etc/nginx/conf.d/default.conf
     mode: 0644
   notify: restart nginx service
-  when: not nginx_is_proxy
-  tags: nginx
+  when: nginx_proxy_backends == None
 
 - name: copy nginx proxy conf
   template:
@@ -32,8 +28,7 @@
     dest: /etc/nginx/conf.d/default.conf
     mode: 0644
   notify: restart nginx service
-  when: nginx_is_proxy
-  tags: nginx
+  when: nginx_proxy_backends != None
 
 - name: copy nginx proxy backend conf
   template:
@@ -41,51 +36,10 @@
     dest: /etc/nginx/conf.d/upstream.conf
     mode: 0644
   notify: restart nginx service
-  when: nginx_is_proxy
-  tags: nginx
-
-- name: detect consul conf directory
-  stat:
-    path: /etc/consul.d
-  register: consul_conf_dir
-  tags: nginx
-
-- name: copy web service conf
-  template:
-    src: web.json.j2
-    dest: /etc/consul.d/web.json
-    mode: 0644
-  notify: restart consul service
-  when: consul_conf_dir.stat.exists
-  tags: nginx
-
-- name: detect consul-template conf directory
-  stat:
-    path: /etc/consul-template.d
-  register: consul_template_conf_dir
-  tags: nginx
-
-- name: copy nginx proxy backend dyna conf
-  template:
-    src: upstream.conf.tmpl.j2
-    dest: /etc/nginx/conf.d/upstream.conf.tmpl
-    mode: 0644
-  notify: restart consul-template service
-  when: nginx_is_proxy and consul_template_conf_dir.stat.exists
-  tags: nginx
-
-- name: copy consul-template conf
-  template:
-    src: nginx_proxy_dyna.conf.j2
-    dest: /etc/consul-template.d/nginx_proxy_dyna.conf
-    mode: 0644
-  notify: restart consul-template service
-  when: nginx_is_proxy and consul_template_conf_dir.stat.exists
-  tags: nginx
+  when: nginx_proxy_backends != None
 
 - name: start nginx service
   service:
     name: nginx
     state: started
     enabled: yes
-  tags: nginx
