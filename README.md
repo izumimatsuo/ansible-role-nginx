@@ -3,7 +3,7 @@
 CentOS 7 に Nginx Web サーバを導入する ansible role です。
 
 - nginx_proxy_backends を設定する事で reverse proxy として動作させられる
-- nginx_cluster_info を設定する事で 1+1 (Active/Stanby) クラスタを構成できる
+- nginx_cluster_info を設定する事で 1+1 (Active/Standby) クラスタを構成できる
 
 以下のセキュリティ設定を反映済み。
 
