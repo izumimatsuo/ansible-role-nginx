@@ -2,6 +2,9 @@
 
 CentOS 7 に Nginx Web サーバを導入する ansible role です。
 
+- nginx_proxy_backends を設定する事で reverse proxy として動作させられる
+- nginx_cluster_info を設定する事で 1+1 (Active/Stanby) クラスタを構成できる
+
 以下のセキュリティ設定を反映済み。
 
 - サーバ情報の隠蔽
@@ -19,7 +22,8 @@ CentOS 7 に Nginx Web サーバを導入する ansible role です。
 | nginx_listen_port | 80           | ポート番号                |
 | nginx_server_name | localhost    | サーバ名                  |
 | nginx_ssl_on      | no           | SSL通信を適用する          |
-| nginx_proxy_backends | localhost:8080 | proxy backend リスト |
+| nginx_proxy_backends | None      | proxy backend リスト |
+| nginx_cluster_info | None        | クラスタ情報設定 例 {virtual_ipaddr: xxx, check_interface: yyy} |
 | nginx_realip_addr | []           | 前段のLB/Proxyのアドレス |
 | use_proxy_protocol | no          | proxy-protocolを使用する |
 

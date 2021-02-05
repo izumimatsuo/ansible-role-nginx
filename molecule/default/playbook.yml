@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   vars:
-    nginx_is_proxy: yes
+    nginx_cluster_info: {virtual_ipaddr: xxx, check_interface: yyy}
     test_skip: true
   roles:
     - role: ansible-role-nginx

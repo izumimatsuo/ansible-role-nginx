@@ -1,0 +1,34 @@
+---
+# tasks file for ansible-role-nginx
+- name: install keepalived package
+  yum:
+    name:
+      - keepalived
+
+- name: copy keepalived conf
+  template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+    mode: 0644
+  notify: restart keepalived service
+
+- name: create script execute user
+  user:
+    name: 'keepalived_script'
+    createhome: no
+    shell: /sbin/nologin
+
+- name: edit sudoers
+  lineinfile:
+    path: /etc/sudoers.d/keepalived_script
+    create: yes
+    regexp: '^%keepalived_script ALL='
+    line: '%keepalived_script ALL=(ALL) NOPASSWD: ALL'
+    validate: '/usr/sbin/visudo -cf %s'
+
+- name: start keepalived service
+  service:
+    name: keepalived
+    state: started
+    enabled: yes
+  when: test_skip is undefined
