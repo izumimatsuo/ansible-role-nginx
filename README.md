@@ -24,8 +24,6 @@ CentOS 7 に Nginx Web サーバを導入する ansible role です。
 | nginx_ssl_on      | no           | SSL通信を適用する          |
 | nginx_proxy_backends | None      | proxy backend リスト |
 | nginx_cluster_info | None        | クラスタ情報設定 例 {virtual_ipaddr: xxx, check_interface: yyy} |
-| nginx_realip_addr | []           | 前段のLB/Proxyのアドレス |
-| use_proxy_protocol | no          | proxy-protocolを使用する |
 
 ## ログフォーマット
 
