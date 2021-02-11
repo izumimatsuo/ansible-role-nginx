@@ -7,6 +7,11 @@
   yum:
     name: nginx
 
+- name: set default listen port
+  set_fact:
+    nginx_listen_port: 443
+  when: nginx_ssl_on and nginx_listen_port == 80
+
 - name: copy nginx conf
   template:
     src: nginx.conf.j2
