@@ -12,13 +12,6 @@
     nginx_listen_port: 443
   when: nginx_ssl_on and nginx_listen_port == 80
 
-- name: copy nginx conf
-  template:
-    src: nginx.conf.j2
-    dest: /etc/nginx/nginx.conf
-    mode: 0644
-  notify: reload nginx service
-
 - name: copy nginx default conf
   template:
     src: default.conf.j2
@@ -42,6 +35,14 @@
     mode: 0644
   notify: reload nginx service
   when: nginx_proxy_backends != None
+
+- name: copy nginx conf
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    mode: 0644
+    validate: '/usr/sbin/nginx -t -c %s'
+  notify: reload nginx service
 
 - name: start nginx service
   service:

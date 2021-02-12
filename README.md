@@ -13,6 +13,11 @@ CentOS 7 に Nginx Web サーバを導入する ansible role です。
 - スニッフィング対策
 - クロスサイトスクリプティング対策
 
+SSL 通信を適用する場合、以下のように証明書等が配置されていること
+
+- /etc/nginx/cert/server.crt
+- /etc/nginx/cert/server.key
+
 ## 設定項目
 
 以下の設定項目は上書き可能。
