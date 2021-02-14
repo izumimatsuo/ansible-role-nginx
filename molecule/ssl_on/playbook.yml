@@ -1,0 +1,20 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    nginx_ssl_on: yes
+    cert_files:
+        - server.key
+        - server.crt
+  pre_tasks:
+    - name: create directory
+      file:
+        path: /etc/nginx/cert
+        state: directory
+        mode: '0755'
+    - name: create cert files
+      shell: 'cd /etc/nginx/cert; openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -subj /CN=localhost -keyout server.key -out server.crt' # noqa 301
+      args:
+        creates: /etc/nginx/cert/server.crt
+  roles:
+    - role: ansible-role-nginx
