@@ -31,4 +31,3 @@
     name: keepalived
     state: started
     enabled: yes
-  when: test_skip is undefined
