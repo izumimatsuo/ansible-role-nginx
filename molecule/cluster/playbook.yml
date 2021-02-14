@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   vars:
-    nginx_cluster_info: {virtual_ipaddr: '172.17.0.3', check_interface: 'eth0'}
+    nginx_cluster_info: {virtual_ipaddr: '172.17.0.4', check_interface: 'eth0'}
   pre_tasks:
     - name: get host ip
       shell: docker inspect --format \{\{.NetworkSettings.IPAddress\}\} "{{ inventory_hostname }}"
