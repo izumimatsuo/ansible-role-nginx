@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    nginx_cluster_info: {virtual_ipaddr: '172.17.0.10/16', check_interface: 'eth0'}
+  roles:
+    - role: ansible-role-nginx

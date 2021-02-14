@@ -1,0 +1,16 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: setup net-tools & iproute package for test
+      yum:
+        name:
+          - net-tools
+          - iproute
+    - name: create consul-template conf directory
+      file:
+        path: /etc/consul-template.d
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
