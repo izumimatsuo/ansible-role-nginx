@@ -5,7 +5,7 @@
     nginx_cluster_info: {virtual_ipaddr: '172.17.0.3', check_interface: 'eth0'}
   pre_tasks:
     - name: get host ip
-      shell: "docker inspect --format \{\{.NetworkSettings.IPAddress\}\} {{ inventory_hostname }}"
+      shell: docker inspect --format \{\{.NetworkSettings.IPAddress\}\} "{{ inventory_hostname }}"
       delegate_to: localhost
       register: instance_ip
       changed_when: false
