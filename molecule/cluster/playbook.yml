@@ -3,5 +3,15 @@
   hosts: all
   vars:
     nginx_cluster_info: {virtual_ipaddr: '172.17.0.10/16', check_interface: 'eth0'}
+  pre_tasks:
+    - name: get host ip
+      shell: docker inspect --format \{\{.NetworkSettings.IPAddress\}\} instance-1
+      delegate_to: localhost
+      register: instance_ip
+      changed_when: false
+      check_mode: no
+    - name: print
+      debug:
+        msg: "{{ instance_ip.stdout }}"
   roles:
     - role: ansible-role-nginx
