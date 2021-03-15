@@ -13,5 +13,4 @@ install:
   - pip install ansible==2.9.6 molecule==2.22 docker==4.2.0
 
 script:
-  - molecule test
-  - molecule test -s ssl_on
+  - molecule test --all

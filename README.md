@@ -13,7 +13,7 @@ CentOS 7 に Nginx Web サーバを導入する ansible role です。
 - スニッフィング対策
 - クロスサイトスクリプティング対策
 
-SSL 通信を適用する場合、以下のように証明書等が配置されていること
+SSL 通信するために、以下のとおりに証明書等が配置されていること
 
 - /etc/nginx/cert/server.crt
 - /etc/nginx/cert/server.key
@@ -24,8 +24,8 @@ SSL 通信を適用する場合、以下のように証明書等が配置され�
 
 | 項目名            | デフォルト値 | 説明                     |
 | ----------------- | ------------ | ------------------------ |
-| nginx_ssl_on      | no           | SSL通信を適用する          |
-| nginx_listen_port | 80           | ポート番号（SSL通信適用を設定した場合は 443 に自動変更） |
+| nginx_ssl_on      | yes          | SSL通信を適用する          |
+| nginx_listen_port | 443          | ポート番号（SSL通信適用を設定しない場合は 80 に自動変更） |
 | nginx_server_name | localhost    | サーバ名                  |
 | nginx_proxy_backends | None      | proxy backend リスト |
 | nginx_cluster_info | None        | クラスタ情報設定 例 {virtual_ipaddr: xxx, check_interface: yyy} |
