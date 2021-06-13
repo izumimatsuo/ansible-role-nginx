@@ -1,9 +1,0 @@
----
-- name: Prepare
-  hosts: all
-  tasks:
-    - name: setup net-tools & iproute package for test
-      yum:
-        name:
-          - net-tools
-          - iproute

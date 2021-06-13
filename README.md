@@ -28,21 +28,4 @@ SSL 通信するために、以下のとおりに証明書等が配置されて�
 | nginx_listen_port | 443          | ポート番号（SSL通信適用を設定しない場合は 80 に自動変更） |
 | nginx_server_name | localhost    | サーバ名                  |
 | nginx_proxy_backends | None      | proxy backend リスト |
-| nginx_cluster_info | None        | クラスタ情報設定 例 {virtual_ipaddr: xxx, check_interface: yyy} |
 
-## ログフォーマット
-
-以下の内容を出力。
-
-| 項目名           | 説明                       |
-| ---------------- | -------------------------- |
-| $remote_addr     | リモートホスト名           |
-| "-"              | "-" 表示                   |
-| $remote_user     | リモートユーザ             |
-| $time_local      | リクエストを受け付けた日時 |
-| $request         | リクエストの最初の行       |
-| $status          | ステータスコード           |
-| $body_bytes_sent | レスポンスのバイト数       |
-| $http_referer    | リファラー                 |
-| $http_user_agent | エージェント               |
-| $request_time    | レスポンス時間、ミリ秒まで |
