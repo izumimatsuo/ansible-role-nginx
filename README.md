@@ -1,9 +1,8 @@
-# ansible-role-nginx [![Build Status](https://travis-ci.org/izumimatsuo/ansible-role-nginx.svg?branch=master)](https://travis-ci.org/izumimatsuo/ansible-role-nginx)
+# ansible-role-nginx [![Build Status](https://travis-ci.com/izumimatsuo/ansible-role-nginx.svg?branch=master)](https://travis-ci.com/izumimatsuo/ansible-role-nginx)
 
 CentOS 7 に Nginx Web サーバを導入する ansible role です。
 
-- nginx_proxy_backends を設定する事で reverse proxy として動作させられる
-- nginx_cluster_info を設定する事で 1+1 (Active/Standby) クラスタを構成できる
+- nginx_proxy_backends を設定する事で reverse proxy としても動作させられる
 
 以下のセキュリティ設定を反映済み。
 
